@@ -1,4 +1,12 @@
 {
+  "name": "Airflow Codespace",
+  "postCreateCommand": "pip install apache-airflow",
+  "postStartCommand": "nohup airflow standalone > airflow.log 2>&1 &",
   "forwardPorts": [8080],
-  "postStartCommand": "nohup airflow standalone > airflow.log 2>&1 &"
+  "portsAttributes": {
+    "8080": {
+      "label": "Airflow",
+      "onAutoForward": "openBrowser"
+    }
+  }
 }
