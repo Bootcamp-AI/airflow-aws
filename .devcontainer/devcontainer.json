@@ -1,0 +1,14 @@
+{
+    "name": "Apache Airflow Local Env",
+    "image": "apache/airflow:latest-python3.10",
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker"
+    ],
+    "forwardPorts": [8080],
+    "postCreateCommand": "airflow db init && (airflow scheduler & airflow webserver -p 8080)"
+}
