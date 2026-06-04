@@ -1,14 +1,15 @@
 {
-    "name": "Apache Airflow Local Env",
-    "image": "apache/airflow:latest-python3.10",
-    "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
-    },
-    "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "ms-azuretools.vscode-docker"
-    ],
-    "forwardPorts": [8080],
-    "postCreateCommand": "airflow db init && (airflow scheduler & airflow webserver -p 8080)"
+  "name": "Airflow",
+  "forwardPorts": [8080],
+
+  "postCreateCommand": "pip install apache-airflow",
+
+  "postStartCommand": "nohup airflow standalone > airflow.log 2>&1 &",
+
+  "portsAttributes": {
+    "8080": {
+      "label": "Airflow",
+      "onAutoForward": "openBrowser"
+    }
+  }
 }
