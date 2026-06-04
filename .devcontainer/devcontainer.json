@@ -1,15 +1,4 @@
 {
-  "name": "Airflow",
   "forwardPorts": [8080],
-
-  "postCreateCommand": "pip install apache-airflow",
-
-  "postStartCommand": "nohup airflow standalone > airflow.log 2>&1 &",
-
-  "portsAttributes": {
-    "8080": {
-      "label": "Airflow",
-      "onAutoForward": "openBrowser"
-    }
-  }
+  "postStartCommand": "nohup airflow standalone > airflow.log 2>&1 &"
 }
