@@ -1,15 +1,13 @@
 {
-  "name": "Airflow Astro",
+  "name": "Airflow Standalone",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-  },
   "forwardPorts": [8080],
-  "postCreateCommand": "curl -sSL install.astronomer.io | sudo bash -s && astro dev start",
   "portsAttributes": {
     "8080": {
       "label": "Airflow UI",
       "onAutoForward": "openBrowser"
     }
-  }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/start.sh &"
 }
