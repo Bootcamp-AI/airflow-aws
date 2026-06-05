@@ -28,7 +28,7 @@ airflow users create \
 
 echo "✅ Setup completo. Airflow listo."
 
-cat >> ~/airflow/airflow.cfg << 'EOF'
-[webserver]
-base_url = https://${CODESPACE_NAME}-8080.app.github.dev
-EOF
+#cat >> ~/airflow/airflow.cfg << 'EOF'
+#[webserver]
+#base_url = https://${CODESPACE_NAME}-8080.app.github.dev
+#EOF
