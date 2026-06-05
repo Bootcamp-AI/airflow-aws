@@ -9,5 +9,6 @@
     }
   },
   "postCreateCommand": "bash .devcontainer/setup.sh",
-  "postStartCommand": "bash .devcontainer/start.sh &"
+  "postStartCommand": "bash .devcontainer/start.sh &",
+  "remoteUser": "vscode"
 }
