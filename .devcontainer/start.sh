@@ -1,6 +1,14 @@
 #!/bin/bash
 sleep 5
 export AIRFLOW_HOME=~/airflow
+
+# Detectar URL pública de Codespaces y actualizar base_url
+if [ -n "$CODESPACE_NAME" ]; then
+  BASE_URL="https://${CODESPACE_NAME}-8080.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+  echo "🌐 Configurando base_url: $BASE_URL"
+  sed -i "s|^base_url.*|base_url = ${BASE_URL}|" ~/airflow/airflow.cfg
+fi
+
 mkdir -p ~/airflow/dags
 cp -r ./dags/. ~/airflow/dags/ 2>/dev/null || true
 
