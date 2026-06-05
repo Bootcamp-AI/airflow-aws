@@ -1,25 +1,32 @@
 #!/bin/bash
 set -e
 
-echo "📦 Instalando Apache Airflow..."
-
 export AIRFLOW_HOME=~/airflow
 AIRFLOW_VERSION=2.9.0
 PYTHON_VERSION="$(python --version | cut -d ' ' -f 2 | cut -d '.' -f 1-2)"
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 
+echo "📦 Instalando Airflow..."
 pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}" -q
 
-echo "🗄️ Inicializando base de datos..."
+echo "🗄️ Inicializando DB..."
 airflow db migrate
+
+# Al final de setup.sh, después de crear el usuario
+echo "🌐 Configurando URL pública..."
+cat >> ~/airflow/airflow.cfg << 'EOF'
+
+[webserver]
+base_url = http://localhost:8080
+EOF
 
 echo "👤 Creando usuario admin..."
 airflow users create \
   --username admin \
-  --password admin \
+  --password admin123 \
   --firstname Admin \
   --lastname User \
   --role Admin \
   --email admin@example.com
 
-echo "✅ Setup completo. Airflow listo."
+echo "✅ Setup completo."
