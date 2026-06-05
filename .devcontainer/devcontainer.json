@@ -1,11 +1,14 @@
 {
-  "name": "Airflow Codespace",
-  "postCreateCommand": "pip install apache-airflow",
-  "postStartCommand": "nohup airflow standalone > airflow.log 2>&1 &",
+  "name": "Airflow Astro",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
   "forwardPorts": [8080],
+  "postCreateCommand": "curl -sSL install.astronomer.io | sudo bash -s && astro dev start",
   "portsAttributes": {
     "8080": {
-      "label": "Airflow",
+      "label": "Airflow UI",
       "onAutoForward": "openBrowser"
     }
   }
