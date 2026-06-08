@@ -1,9 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "📦 Instalando Apache Airflow..."
-
-mkdir -p /workspaces/airflow-aws/src
+#mkdir -p /workspaces/airflow-aws/src
 
 export AIRFLOW_HOME=~/airflow
 AIRFLOW_VERSION=2.9.0
@@ -12,14 +10,12 @@ CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${A
 
 pip install "apache-airflow==${AIRFLOW_VERSION}"
 
-echo "🗄️ Inicializando base de datos..."
 airflow db migrate
 
 cat > ~/airflow/webserver_config.py << 'EOF'
 WTF_CSRF_ENABLED = False
 EOF
 
-echo "👤 Creando usuario admin..."
 airflow users create \
   --username admin \
   --password admin \
@@ -28,7 +24,6 @@ airflow users create \
   --role Admin \
   --email admin@example.com
 
-echo "✅ Setup completo. Airflow listo."
 
 #cat >> ~/airflow/airflow.cfg << 'EOF'
 #[webserver]
