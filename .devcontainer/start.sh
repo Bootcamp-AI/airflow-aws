@@ -1,6 +1,7 @@
 #!/bin/bash
 sleep 5
 export AIRFLOW_HOME=~/airflow
+export AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX=True
 
 # Detectar URL pública de Codespaces y actualizar base_url
 if [ -n "$CODESPACE_NAME" ]; then
